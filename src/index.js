@@ -4,6 +4,7 @@ import express from "express";
 import { connectDB } from "./configs/db.js";
 import { ENV } from "./configs/env.js";
 import userRoutes from "./routes/user.route.js";
+import postRoutes from "./routes/post.route.js";
 
 const app = express();
 app.use(cors())
@@ -17,6 +18,15 @@ app.get("/", (req, res) => {
 })
 
 app.use("/users", userRoutes)
+app.use("/posts", postRoutes)
+
+// error handler middleware
+app.use((err, req, res, next) => {
+  console.error("Unhandled error: ", err)
+  res.status(500).json({
+    error: err.message || "Internal server error"
+  })
+})
 
 const PORT = ENV.PORT;
 
