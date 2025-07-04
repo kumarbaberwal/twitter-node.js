@@ -5,6 +5,7 @@ import { connectDB } from "./configs/db.js";
 import { ENV } from "./configs/env.js";
 import userRoutes from "./routes/user.route.js";
 import postRoutes from "./routes/post.route.js";
+import commentRoutes from "./routes/comments.route.js";
 
 const app = express();
 app.use(cors())
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 
 app.use("/users", userRoutes)
 app.use("/posts", postRoutes)
+app.use("/comments", commentRoutes)
 
 // error handler middleware
 app.use((err, req, res, next) => {
