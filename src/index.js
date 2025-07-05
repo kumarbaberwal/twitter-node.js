@@ -37,6 +37,12 @@ app.use((err, req, res, next) => {
 const PORT = ENV.PORT;
 
 app.listen(PORT, async () => {
-  console.log(`Server is running on: http://localhost:${PORT}`)
+  if (ENV.NODE_ENV !== "production") {
+    console.log(`Server is running on: http://localhost:${PORT}`)
+  }
   await connectDB();
 })
+
+
+// Export for vercel
+export default app
