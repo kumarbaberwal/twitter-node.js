@@ -1,9 +1,9 @@
 import asyncHandler from 'express-async-handler';
-import Comment from '../models/comment.model';
+import Comment from '../models/comment.model.js';
 import { getAuth } from '@clerk/express';
-import User from '../models/user.model';
-import Post from '../models/post.model';
-import Notification from '../models/notification.model';
+import User from '../models/user.model.js';
+import Post from '../models/post.model.js';
+import Notification from '../models/notification.model.js';
 import mongoose from 'mongoose';
 
 export const getComments = asyncHandler(async (req, res) => {
