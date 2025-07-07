@@ -1,5 +1,5 @@
-import dotenvx from '@dotenvx/dotenvx';
-dotenvx.config()
+import dotenv from 'dotenv';
+dotenv.config()
 
 export const ENV = {
     PORT: process.env.PORT,
