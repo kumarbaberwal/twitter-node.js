@@ -14,6 +14,7 @@ app.use(cors())
 app.use(express.json())
 app.use(clerkMiddleware())
 // app.use(arcjetMiddleware)
+await connectDB();
 
 app.get("/", (req, res) => {
   res.status(200).json({
@@ -40,7 +41,6 @@ app.listen(PORT, async () => {
   if (ENV.NODE_ENV !== "production") {
     console.log(`Server is running on: http://localhost:${PORT}`)
   }
-  await connectDB();
 })
 
 
