@@ -9,7 +9,7 @@ export const ENV = {
     MONGO_URI: process.env.MONGO_URI,
     ARCJET_ENV: process.env.ARCJET_ENV,
     ARCJET_KEY: process.env.ARCJET_KEY,
-    CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAM,
+    CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
     CLOUDINARY_KEY: process.env.CLOUDINARY_KEY,
     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
 }
