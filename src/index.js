@@ -14,7 +14,6 @@ app.use(cors())
 app.use(express.json())
 app.use(clerkMiddleware())
 // app.use(arcjetMiddleware)
-await connectDB();
 
 app.get("/", (req, res) => {
   res.status(200).json({
@@ -37,11 +36,21 @@ app.use((err, req, res, next) => {
 
 const PORT = ENV.PORT;
 
-app.listen(PORT, async () => {
-  if (ENV.NODE_ENV !== "production") {
-    console.log(`Server is running on: http://localhost:${PORT}`)
+const startServer = async () => {
+  try {
+    await connectDB();
+
+    // listen for local development
+    if (ENV.NODE_ENV !== "production") {
+      app.listen(ENV.PORT, () => console.log("Server is up and running on PORT:", ENV.PORT));
+    }
+  } catch (error) {
+    console.error("Failed to start server:", error.message);
+    process.exit(1);
   }
-})
+};
+
+startServer();
 
 
 // Export for vercel
