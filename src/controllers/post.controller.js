@@ -65,7 +65,7 @@ export const createPost = asyncHandler(async (req, res) => {
     const { content } = req.body
     const imageFile = req.file
 
-    if (!content || !imageFile) {
+    if (!content && !imageFile) {
         return res.status(400).json({
             error: "Post must contain either text or image"
         })
