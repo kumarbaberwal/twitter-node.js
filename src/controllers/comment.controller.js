@@ -38,21 +38,21 @@ export const createComment = asyncHandler(async (req, res) => {
     }
 
     const session = await mongoose.startSession();
-    let comment;
+    let newComment;
 
     try {
         await session.withTransaction(async () => {
-            comment = await Comment.create({
+            [newComment] = await Comment.create([{
                 user: user._id,
                 post: postId,
                 content,
 
-            }, { session })
+            }], { session })
 
             // Link the comment to the post
 
             await Post.findByIdAndUpdate(postId, {
-                $push: { comments: comment._id }
+                $push: { comments: newComment._id }
             }, { session })
         });
     } catch (error) {
@@ -70,12 +70,12 @@ export const createComment = asyncHandler(async (req, res) => {
             to: post.user,
             type: "comment",
             post: post._id,
-            comment: comment._id,
+            comment: newComment._id,
         });
     }
 
     res.status(201).json({
-        comment
+        newComment
     })
 })
 
