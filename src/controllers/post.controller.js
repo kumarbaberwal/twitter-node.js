@@ -120,7 +120,7 @@ export const likePost = asyncHandler(async (req, res) => {
         return res.status(404).json({ error: "User or post not found" })
     }
 
-    const isLiked = await post.likes.includes(user._id);
+    const isLiked = post.likes.includes(user._id);
 
     if (isLiked) {
         // unlike
