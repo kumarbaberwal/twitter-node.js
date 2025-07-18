@@ -65,7 +65,7 @@ export const getCurrentUser = asyncHandler(async (req, res) => {
 
 export const followUser = asyncHandler(async (req, res) => {
     const { userId } = getAuth(req)
-    const targetUserId = req.params;
+    const { targetUserId } = req.params;
 
     if (userId === targetUserId) return res.status(400).json({ error: "You cannot follow yourself" });
 
